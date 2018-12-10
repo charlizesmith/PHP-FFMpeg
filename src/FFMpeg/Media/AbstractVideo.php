@@ -103,7 +103,8 @@ abstract class AbstractVideo extends Audio
         $this->fs->clean($this->fsId);
 
         if (null !== $failure) {
-            throw new RuntimeException('Encoding failed', $failure->getCode(), $failure);
+           // throw new RuntimeException('Encoding failed', $failure->getCode(), $failure);
+             return false;
         }
 
         return $this;
@@ -158,6 +159,12 @@ abstract class AbstractVideo extends Audio
         }
 
         if ($format instanceof VideoInterface) {
+            $format->getVideoCodec()=='libx264'?$commands[] = '-c:a':'';
+            $format->getVideoCodec()=='libx264'?$commands[] = 'copy':'';
+            $format->getVideoCodec()=='libx264'?$commands[] = '-profile:v':'';
+            $format->getVideoCodec()=='libx264'?$commands[] = 'baseline':'';
+            $format->getVideoCodec()=='libx264'?$commands[] = '-level':'';
+            $format->getVideoCodec()=='libx264'?$commands[] = '3.0':'';
             $commands[] = '-b:v';
             $commands[] = $format->getKiloBitrate() . 'k';
             $commands[] = '-refs';
