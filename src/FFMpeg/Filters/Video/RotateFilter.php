@@ -19,7 +19,7 @@ use FFMpeg\Format\VideoInterface;
 class RotateFilter implements VideoFilterInterface
 {
     const ROTATE_90 = 'transpose=1';
-    const ROTATE_180 = 'hflip,vflip';
+    const ROTATE_180 = 'rotate=1*(PI/180)';
     const ROTATE_270 = 'transpose=2';
 
     /** @var string */
