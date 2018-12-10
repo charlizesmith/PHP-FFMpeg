@@ -129,7 +129,8 @@ class Frame extends AbstractMediaType
             }
         } catch (ExecutionFailureException $e) {
             $this->cleanupTemporaryFile($pathfile);
-            throw new RuntimeException('Unable to save frame', $e->getCode(), $e);
+       //     throw new RuntimeException('Unable to save frame', $e->getCode(), $e);
+              return false;
         }
     }
 }
